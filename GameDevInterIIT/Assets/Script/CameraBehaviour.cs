@@ -33,7 +33,8 @@ public class CameraBehaviour : MonoBehaviour
     void LateUpdate(){
         cam.m_Lens.FieldOfView = Mathf.Lerp(cam.m_Lens.FieldOfView, FOV, lerpSpeed * Time.deltaTime);
         int index = (topDownCamera ? 1 : 0);
-        transposer.m_XDamping = topDownCamera ? 0 : 1.2f;
+        float targetDamp = topDownCamera ? 0 : 1.2f;
+        transposer.m_XDamping = Mathf.Lerp(transposer.m_XDamping, targetDamp, lerpSpeed * Time.deltaTime);
         transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, followOffsets[index], lerpSpeed * Time.deltaTime);
     }   
 }

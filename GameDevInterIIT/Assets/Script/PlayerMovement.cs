@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool jump = false;
     public float moveSpeed = 10f;
     public float jumpForce = 10f;
-    private Vector3 moveDir = Vector3.zero;
+    public Vector3 moveDir = Vector3.zero;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -37,8 +37,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
             jump = false;
         }
-        
-        rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+        if(moveDir != Vector3.zero) rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }
 
     

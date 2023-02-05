@@ -15845,7 +15845,7 @@ MonoBehaviour:
   - {x: 0, y: 20, z: -2}
   FOV: 40
   lerpSpeed: 1
-  ScrollIncrement: 1
+  ScrollIncrement: 3
   minFOV: 20
   maxFOV: 60
 --- !u!1 &462140832

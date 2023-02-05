@@ -8,7 +8,7 @@ public class CameraBehaviour : MonoBehaviour
     public CinemachineVirtualCamera cam;
     private CinemachineTransposer transposer;
     public GameObject Player;
-    public Vector3[] followOffsets = {new Vector3(0, 7, -9), new Vector3(0, 8, -1)};
+    public Vector3[] followOffsets = {new Vector3(0, 20, -21), new Vector3(0, 20, -2)};
     public float FOV = 40f;
     bool topDownCamera = false;
     public float lerpSpeed = 1f;

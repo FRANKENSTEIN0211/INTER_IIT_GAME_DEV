@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10f;
     public float jumpSpeed = 10f;
     public Vector3 moveDir = Vector3.zero;
-
-    float xmove;
-    float zmove;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -22,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        xmove = Input.GetAxisRaw("Horizontal");
-        zmove = Input.GetAxisRaw("Vertical");
-
+        moveDir.x = Input.GetAxisRaw("Horizontal");
+        moveDir.z = Input.GetAxisRaw("Vertical");
+        moveDir = moveDir.normalized; 
         if(Input.GetKeyDown("space") && isGrounded){
             jump = true;
         }
@@ -35,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         LayerMask mask = LayerMask.GetMask("Map");
         isGrounded = Physics.CheckSphere(foot.position, footOverLapSphereRadius, mask);
 
-        rb.velocity = new Vector3(xmove*moveSpeed,rb.velocity.y,zmove*moveSpeed);
+        rb.velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
 
         if(isGrounded){
             if(jump){

@@ -10,8 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded = false;
     public bool jump = false;
     public float moveSpeed = 10f;
-    public float jumpForce = 10f;
+    public float jumpSpeed = 10f;
     public Vector3 moveDir = Vector3.zero;
+
+    float xmove;
+    float zmove;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -19,25 +22,27 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        xmove = Input.GetAxisRaw("Horizontal");
+        zmove = Input.GetAxisRaw("Vertical");
 
         if(Input.GetKeyDown("space") && isGrounded){
             jump = true;
         }
-
-        moveDir = new Vector3(h,0,v).normalized;
     }
 
     void FixedUpdate()
     {
         LayerMask mask = LayerMask.GetMask("Map");
         isGrounded = Physics.CheckSphere(foot.position, footOverLapSphereRadius, mask);
-        if(isGrounded && jump){
-            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-            jump = false;
+
+        rb.velocity = new Vector3(xmove*moveSpeed,rb.velocity.y,zmove*moveSpeed);
+
+        if(isGrounded){
+            if(jump){
+                rb.velocity=new Vector3(rb.velocity.x,jumpSpeed,rb.velocity.z);
+                jump = false;
+            }
         }
-        if(moveDir != Vector3.zero) rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }
 
     

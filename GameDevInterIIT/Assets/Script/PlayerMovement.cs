@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Rigidbody rb;
     public float moveSpeed = 10f;
+    private Vector3 moveDir = Vector3.zero;
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
-        h = h * moveSpeed * Time.deltaTime;
-        v = v * moveSpeed * Time.deltaTime;
+        moveDir = new Vector3(h,0,v).normalized;
+    }
 
-        transform.position += new Vector3(h, 0, v);
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }
 }

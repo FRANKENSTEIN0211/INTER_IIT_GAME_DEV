@@ -1,15 +1,3 @@
-/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,27 +86,10 @@ public class HighscoreTable : MonoBehaviour {
             entryTransform.Find("nameText").GetComponent<TMP_Text>().color = Color.red;
         }
 
-        // Set tropy
-        // switch (rank) {
-        // default:
-        //     entryTransform.Find("trophy").gameObject.SetActive(false);
-        //     break;
-        // case 1:
-        //     entryTransform.Find("trophy").GetComponent<Image>().color = UtilsClass.GetColorFromString("FFD200");
-        //     break;
-        // case 2:
-        //     entryTransform.Find("trophy").GetComponent<Image>().color = UtilsClass.GetColorFromString("C6C6C6");
-        //     break;
-        // case 3:
-        //     entryTransform.Find("trophy").GetComponent<Image>().color = UtilsClass.GetColorFromString("B76F56");
-        //     break;
-
-        // }
-
         transformList.Add(entryTransform);
     }
 
-    private void AddHighscoreEntry(int score, string name) {
+    public static void AddHighscoreEntry(int score, string name) {
         // Create HighscoreEntry
         HighscoreEntry highscoreEntry = new HighscoreEntry { score = score, name = name };
         
@@ -146,9 +117,6 @@ public class HighscoreTable : MonoBehaviour {
         public List<HighscoreEntry> highscoreEntryList;
     }
 
-    /*
-     * Represents a single High score entry
-     * */
     [System.Serializable] 
     private class HighscoreEntry {
         public int score;

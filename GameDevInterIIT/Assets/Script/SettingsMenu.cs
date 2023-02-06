@@ -12,6 +12,7 @@ public class SettingsMenu : MonoBehaviour
     }
 
     public void SetVolume(float volume){
-       MainMixer.SetFloat("Volume",volume);
+        float setTo = 20 * Mathf.Log10(volume);
+       MainMixer.SetFloat("Volume",setTo);
     }
 }

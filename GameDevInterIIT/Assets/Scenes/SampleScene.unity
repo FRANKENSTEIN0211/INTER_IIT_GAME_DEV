@@ -2524,9 +2524,9 @@ GameObject:
   m_Component:
   - component: {fileID: 129977869}
   - component: {fileID: 129977867}
-  - component: {fileID: 129977872}
   - component: {fileID: 129977874}
   - component: {fileID: 129977873}
+  - component: {fileID: 129977875}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -2566,20 +2566,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &129977872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129977866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myTarget: {fileID: 3354280155468220639}
-  myAgent: {fileID: 129977873}
 --- !u!195 &129977873
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2616,6 +2602,20 @@ CapsuleCollider:
   m_Height: 2.1184828
   m_Direction: 1
   m_Center: {x: 0, y: -0.009773975, z: 0}
+--- !u!114 &129977875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129977866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3354280155468220633}
+  climbHeight: 3
 --- !u!1001 &131822477
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2558,7 +2558,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129977866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 134.35, y: -2.63, z: -74.722}
+  m_LocalPosition: {x: 134.35, y: -0.534, z: -74.722}
   m_LocalScale: {x: 1.0442, y: 1.0442, z: 1.0442}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2590,7 +2590,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2599,7 +2599,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &129977874
@@ -2609,7 +2609,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129977866}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 765b4f68214dd1c458dd3547e3eb8992, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -12904,7 +12904,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 439
+    m_Bits: 183
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -28115,6 +28115,10 @@ PrefabInstance:
     - target: {fileID: 1000013755513160, guid: c952c76ccd6103a4595f66ad13a632d7, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013755513160, guid: c952c76ccd6103a4595f66ad13a632d7, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000013755513160, guid: c952c76ccd6103a4595f66ad13a632d7, type: 3}
       propertyPath: m_StaticEditorFlags

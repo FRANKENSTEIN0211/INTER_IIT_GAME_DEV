@@ -103,7 +103,6 @@ public class Animation_view : MonoBehaviour {
 			anim.SetBool ("Step_Left", true);
 		if(GUI.Button(new Rect(0 , 950 ,130, 20), "Step_Right"))
 			anim.SetBool ("Step_Right", true);
-
 		GUI.EndScrollView();
 	}
 }

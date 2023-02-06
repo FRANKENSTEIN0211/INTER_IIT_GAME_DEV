@@ -5,82 +5,91 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("GameObjects")]
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject Bullets;
+    // [SerializeField] GameObject player;
 
-    [Header("Distance Between Player")]
-    [SerializeField] float MaxDis = 5000f;
-    [SerializeField] float MinDis = 500f;
-    float DisBtw;
+    // [Header("Distance Between Player")]
+    // [SerializeField] float MaxDis = 5000f;
+    // [SerializeField] float MinDis = 500f;
+    // float DisBtw;
 
-    [Header("Enemy Constraints")]
-    [SerializeField] int EnemyHealth = 10;
-    [SerializeField] float EnemySpeed = 1f;
-    [SerializeField] float DestroyTime = 3f;
-    [SerializeField] Transform Gun;
+    // [Header("Enemy Constraints")]
+    // [SerializeField] float EnemyHealth = 100f;
+    // [SerializeField] float EnemySpeed = 1f;
+    // [SerializeField] float TimeBtwShots = 3f;
+    // [SerializeField] float DestroyTime = 3f;
+    // [SerializeField] float WarningTime = 0.5f;
+    // [SerializeField] float DamageRange = 1f;
+    // [SerializeField] float Damage = 10f;
 
-    [Header("Bullet Constraints")]
-    [SerializeField] float BulletLifeTime = 5f;
-    [SerializeField] float TimeBtwShots = 3f;
-    bool IsShoot = true;
+    // bool IsAttack = true;
+
+    // void Start()
+    // {
+    //     Debug.Log(MinDis);
+    // }
+
+    // void FixedUpdate()
+    // {
+    //     if(EnemyHealth > 0){
+    //         DisBtw = Vector3.Distance(player.transform.position, transform.position);
+    //         // Debug.Log(DisBtw);
+    //         if (IsAttack && DisBtw <= MinDis)
+    //         {
+    //             Debug.Log("fired");
+    //             StartCoroutine(Attack());
+    //         }
+    //     }
+    // }
+
+    // //function for taking damage
+    // public void TakeDamage(float damage)
+    // {
+    //     EnemyHealth -= damage;
+    //     if (EnemyHealth <= 0){
+    //         Destroy(gameObject, DestroyTime);
+    //     }
+    // }
+
+    // //the function call for firing the bullet.
+    // IEnumerator Attack()
+    // {
+    //     //instantiate the bullet as gameobject 
+    //     //wait until the time between shots to complete and fire again.
+    //     IsAttack = false;
+    //     yield return new WaitForSeconds(WarningTime);
+    //     var direction = (player.transform.position - transform.position).normalized;
+
+    //     // Play Attack Animation
+    //     // if(DisBtw < DamageRange){
+    //     //     Player.TakeDamage(Damage);
+    //     //     //Player Damage animation
+    //     // }
+
+    //     yield return new WaitForSeconds(TimeBtwShots);
+    //     IsAttack = true;
+    // }
+
+    public int maxHealth = 100;
+    public int currentHealth;
 
     void Start()
     {
-        Debug.Log(MinDis);
+        currentHealth = maxHealth;
     }
 
-    void FixedUpdate()
-    {
-        DisBtw = Vector3.Distance(player.transform.position, transform.position);
+    public void TakeDamage(int damage){
+        currentHealth -= damage;
 
-        if (DisBtw > MinDis && DisBtw < MaxDis)
-        {
-            //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, EnemySpeed * Time.deltaTime);
+        // hurt animation
+
+        if(currentHealth <= 0){
+            Die();
         }
 
-        Debug.Log(DisBtw);
-        if (IsShoot && DisBtw <= MinDis)
-        {
-            Debug.Log("fired");
-            StartCoroutine(Fire());
-        }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if the player get collided with player, accidently or intentionally
-        //kill the player instantly and take some damge.
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(collision.gameObject);
-            TakeDamage();
-        }
-    }
-
-    //function for taking damage
-    void TakeDamage()
-    {
-        EnemyHealth--;
-        if (EnemyHealth <= 0) { Destroy(gameObject, DestroyTime); }
-    }
-
-    //the function call for firing the bullet.
-    IEnumerator Fire()
-    {
-        //instantiate the bullet as gameobject 
-        //wait until the time between shots to complete and fire again.
-        IsShoot = false;
-        var direction = (player.transform.position - transform.position).normalized;
-        GameObject Bullet = Instantiate(Bullets, transform.position + direction, transform.rotation);
-        Bullet.GetComponent<Rigidbody>().velocity = direction*8;
-
-        Debug.Log("bullet");
-        Debug.Log(Bullet.transform.position);
-        Destroy(Bullet, BulletLifeTime);
-        yield return new WaitForSeconds(TimeBtwShots);
-        IsShoot = true;
+    void Die(){
+        Debug.Log("Ded");
     }
 
 }

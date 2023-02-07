@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = vel;
-        if (jump){
+        if (wasJumping){
             playerAnimator.SetBool("IsRunning", false);
             playerAnimator.SetBool("IsWalkingForward", false);
             playerAnimator.SetBool("IsJumping", true);

@@ -3,18 +3,28 @@ using UnityEngine.AI;
 
 public class FollowAgent : MonoBehaviour
 {
-    public Transform target; // The main player's transform
     private NavMeshAgent agent; // The NavMeshAgent component on this game object
-    public float climbHeight = 3f; // The height of the stairs
+    public GameObject playerPrefab;
+    private GameObject playerInstance;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
+
+        // Find the instance of the player in the scene
+        playerInstance = GameObject.FindWithTag("Player");
+        if (playerInstance == null)
+        {
+            Debug.LogError("No player found in the scene");
+        }
     }
 
     void Update()
     {
-        agent.SetDestination(target.position);
+        if (playerInstance != null)
+        {
+            agent.SetDestination(playerInstance.transform.position);
+        }
     }
 }

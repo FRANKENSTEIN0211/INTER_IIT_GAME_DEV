@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float footOverLapSphereRadius = 0.1f;
     public float lerpConstant = 10f;
     public float sprintMultiplier = 1.5f;
+    Animator playerAnimator;
 
     LayerMask mask;
     void Start()
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         followTargetRotation = Vector3.zero;
         rb = gameObject.GetComponent<Rigidbody>();
         mask = LayerMask.GetMask("Map");
+        playerAnimator = GetComponent<Animator>();
     }
     void Update()
     {
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
             sprinting = false;
         }
 
+        
         // if(input.magnitude >= 0.1f){
         //     float targetAngle = Mathf.Atan2(input.x, input.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
         //     float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnCalmVelocity, turnCalmTime);
@@ -87,6 +90,34 @@ public class PlayerController : MonoBehaviour
         }else vel.y = rb.velocity.y;
 
         rb.velocity = vel;
+        if (Input.GetKeyDown(KeyCode.Space)){
+            playerAnimator.SetBool("IsJumping", true);
+            playerAnimator.SetBool("IsRunning", false);
+            playerAnimator.SetBool("IsWalkingForward", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsJumping", false);
+        }
+        if (sprinting && input.magnitude >= 0.1f)
+        {
+            playerAnimator.SetBool("IsRunning", true);
+            playerAnimator.SetBool("IsWalkingForward", false);
+            Debug.Log("running");
+        }
+        else
+        {
+            playerAnimator.SetBool("IsRunning", false);
+            if (input.magnitude >= 0.1f)
+            {
+                playerAnimator.SetBool("IsWalkingForward", true);
+
+            }
+            else
+            {
+                playerAnimator.SetBool("IsWalkingForward", false);
+            }
+        }
     }
 
 }

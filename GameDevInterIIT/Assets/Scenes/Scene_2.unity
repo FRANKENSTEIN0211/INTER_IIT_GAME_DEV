@@ -34845,7 +34845,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   input: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
-  moveSpeed: 600
+  moveSpeed: 400
   rotateSpeed: 500
   jumpSpeed: 10
   followTargetRotation: {x: 0, y: 0, z: 0}
@@ -34855,7 +34855,7 @@ MonoBehaviour:
   jump: 0
   sprinting: 0
   footOverLapSphereRadius: 0.5
-  lerpConstant: 10
+  lerpConstant: 20
   sprintMultiplier: 1.8
 --- !u!114 &8941738162145807246
 MonoBehaviour:

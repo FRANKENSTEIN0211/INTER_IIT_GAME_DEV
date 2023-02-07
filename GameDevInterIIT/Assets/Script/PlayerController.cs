@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     // public float turnCalmTime = 0.1f;
     // public float turnCalmVelocity;
 
+    public float gravity;
     public float moveSpeed = 10f;
     public float rotateSpeed = 5f;
     public float jumpSpeed = 10f;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         mask = LayerMask.GetMask("Map");
         playerAnimator = GetComponent<Animator>();
+        gravity = -Physics.gravity.y;
     }
     void Update()
     {
@@ -82,11 +84,11 @@ public class PlayerController : MonoBehaviour
             followTarget.rotation = followTargetRotation;
         }
 
-        Vector3 vel = moveDir * moveSpeed * (Time.fixedDeltaTime * (1 + (1.0f - Time.timeScale))) * (sprinting ? sprintMultiplier : 1);
+        Vector3 vel = moveDir * moveSpeed * (Time.fixedUnscaledDeltaTime / Time.timeScale) * (sprinting ? sprintMultiplier : 1);
 
         if(isGrounded && jump){
             wasJumping = true;
-            vel.y = jumpSpeed;
+            vel.y = jumpSpeed / Time.timeScale;
             jump = false;
         }else vel.y = rb.velocity.y;
 
@@ -95,6 +97,8 @@ public class PlayerController : MonoBehaviour
                 vel.y *= -1;
             }
         }
+
+        vel.y -= gravity * Time.fixedUnscaledDeltaTime / Time.timeScale;
 
         rb.velocity = vel;
         if (wasJumping){

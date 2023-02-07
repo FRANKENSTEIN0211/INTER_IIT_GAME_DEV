@@ -22,12 +22,14 @@ public class TimeController : MonoBehaviour
             slowMo = true;
             Time.timeScale = Mathf.Lerp(Time.timeScale, slowTimeScale, lerpSpeed * Time.deltaTime);
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            animator.speed = 1/Time.timeScale;  
             Debug.Log(Time.timeScale);
         }
         else{
             slowMo = false;
             Time.timeScale = Mathf.Lerp(Time.timeScale, normalTimeScale, lerpSpeed * Time.deltaTime);
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            animator.speed = 1/Time.timeScale;
         }
     }
 }

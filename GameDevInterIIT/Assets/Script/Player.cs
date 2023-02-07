@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         if(Time.time >= nextAttackTime){   
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                combatAnim.Attack();
+                combatAnim.AttackAnim();
                 Attack();
                 // Debug.Log(Time.time);
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Attack()
+    public void Attack()
     {
         //Attack anim
 

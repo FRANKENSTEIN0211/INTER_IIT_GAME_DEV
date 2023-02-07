@@ -5,16 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Transform attackPoint;
+    public CombatAnimationController combatAnim;
     public float attackRange = 0.5f;
     public int attackDamage = 20;
     public float attackRate = 1f;
     public float nextAttackTime = 0f;
     public LayerMask enemyLayer;
+
+    void Start(){
+        combatAnim = gameObject.GetComponent<CombatAnimationController>();
+    }
     void Update()
     {
         if(Time.time >= nextAttackTime){   
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                combatAnim.Attack();
                 Attack();
                 // Debug.Log(Time.time);
                 nextAttackTime = Time.time + 1f / attackRate;

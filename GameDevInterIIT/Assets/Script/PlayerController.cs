@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 10f;
     public Vector3 followTargetRotation;
     public float minAngle = -60f, maxAngle = 85f;
-    public bool isGrounded = true, jump = false;
+    public bool isGrounded = true, jump = false, sprinting = false;
     public float footOverLapSphereRadius = 0.1f;
+    public float lerpConstant = 10f;
+    public float sprintMultiplier = 1.5f;
 
     LayerMask mask;
     void Start()
@@ -40,16 +42,33 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown("space") && isGrounded){
             jump = true;
         }
+
+        if(Input.GetKeyDown("left shift") && isGrounded){
+            sprinting = true;
+        }
+
+        if(Input.GetKeyUp("left shift")){
+            sprinting = false;
+        }
     }
 
     void FixedUpdate()
     {
-        
         isGrounded = Physics.CheckSphere(foot.position, footOverLapSphereRadius, mask);
 
         followTarget.eulerAngles = followTargetRotation;
-        moveDir = (followTarget.forward * input.y + followTarget.right * input.x).normalized;
-        Vector3 vel = moveDir * moveSpeed * Time.fixedDeltaTime;
+        moveDir = (followTarget.forward * input.y + followTarget.right * input.x);
+        moveDir.y = 0;
+        moveDir.Normalize();
+
+        if(moveDir != Vector3.zero){
+            Vector3 targetRotation = new Vector3(moveDir.x, transform.forward.y, moveDir.z);
+            Quaternion followTargetRotation = followTarget.rotation;
+            transform.forward = Vector3.Lerp(transform.forward, targetRotation, lerpConstant * Time.fixedDeltaTime);
+            followTarget.rotation = followTargetRotation;
+        }
+
+        Vector3 vel = moveDir * moveSpeed * Time.fixedDeltaTime * (sprinting ? sprintMultiplier : 1);
 
         if(isGrounded && jump){
             vel.y = jumpSpeed;

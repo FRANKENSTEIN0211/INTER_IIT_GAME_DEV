@@ -12906,7 +12906,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 829bff7e821176b44b2b73e659ef108f, type: 2}
 --- !u!4 &669632266
@@ -44342,7 +44342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8941738161969784591
 Transform:
   m_ObjectHideFlags: 0
@@ -46545,7 +46545,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   input: {x: 0, y: 0}
   moveDir: {x: 0, y: 0, z: 0}
-  moveSpeed: 800
+  moveSpeed: 600
   rotateSpeed: 500
   jumpSpeed: 10
   followTargetRotation: {x: 0, y: 0, z: 0}
@@ -46553,7 +46553,10 @@ MonoBehaviour:
   maxAngle: 85
   isGrounded: 1
   jump: 0
+  sprinting: 0
   footOverLapSphereRadius: 0.5
+  lerpConstant: 10
+  sprintMultiplier: 1.8
 --- !u!1 &8941738162212390857
 GameObject:
   m_ObjectHideFlags: 0

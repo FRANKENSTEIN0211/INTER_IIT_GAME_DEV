@@ -97,10 +97,10 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = vel;
-        if (Input.GetKeyDown(KeyCode.Space)){
-            playerAnimator.SetBool("IsJumping", true);
+        if (jump){
             playerAnimator.SetBool("IsRunning", false);
             playerAnimator.SetBool("IsWalkingForward", false);
+            playerAnimator.SetBool("IsJumping", true);
         }
         else
         {

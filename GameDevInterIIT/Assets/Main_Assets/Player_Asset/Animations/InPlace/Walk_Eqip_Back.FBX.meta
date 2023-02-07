@@ -568,7 +568,7 @@ ModelImporter:
         weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 31.8
     isReadable: 1
   meshes:
     lODScreenPercentages: []

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 10f;
     public Vector3 followTargetRotation;
     public float minAngle = -60f, maxAngle = 85f;
-    public bool isGrounded = true, jump = false, sprinting = false;
+    public bool isGrounded = true, jump = false, sprinting = false, wasJumping = false;
     public float footOverLapSphereRadius = 0.1f;
     public float lerpConstant = 10f;
     public float sprintMultiplier = 1.5f;
@@ -85,9 +85,16 @@ public class PlayerController : MonoBehaviour
         Vector3 vel = moveDir * moveSpeed * Time.fixedDeltaTime * (sprinting ? sprintMultiplier : 1);
 
         if(isGrounded && jump){
+            wasJumping = true;
             vel.y = jumpSpeed;
             jump = false;
         }else vel.y = rb.velocity.y;
+
+        if(vel.y > 0){
+            if(!wasJumping){
+                vel.y *= -1;
+            }
+        }
 
         rb.velocity = vel;
         if (Input.GetKeyDown(KeyCode.Space)){
@@ -117,6 +124,13 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnimator.SetBool("IsWalkingForward", false);
             }
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.layer == LayerMask.NameToLayer("Map")){
+            wasJumping = false;
         }
     }
 

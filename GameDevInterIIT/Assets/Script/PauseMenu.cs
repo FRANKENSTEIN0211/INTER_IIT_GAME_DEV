@@ -37,8 +37,8 @@ public class PauseMenu : MonoBehaviour
 
     public void BackToMenu()
     {
-        Time.timeScale=1f;
         Transition Trann = FindObjectOfType<Transition>();
+        Time.timeScale=1f;
         Trann.LoadLevel0();
     }
 

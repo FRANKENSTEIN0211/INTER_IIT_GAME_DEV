@@ -6,8 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public Transform followTarget, foot;
     public Rigidbody rb;
-    public Vector2 input = Vector2.zero;
+    public Vector3 input = Vector3.zero;
     public Vector3 moveDir = Vector3.zero;
+
+    // public Transform playerCamera;
+    // public float turnCalmTime = 0.1f;
+    // public float turnCalmVelocity;
 
     public float moveSpeed = 10f;
     public float rotateSpeed = 5f;
@@ -29,7 +33,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        input.z = Input.GetAxisRaw("Vertical");
         input.Normalize();
         
         float mouseX = Input.GetAxis("Mouse X");
@@ -50,6 +54,13 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyUp("left shift")){
             sprinting = false;
         }
+
+        // if(input.magnitude >= 0.1f){
+        //     float targetAngle = Mathf.Atan2(input.x, input.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
+        //     float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnCalmVelocity, turnCalmTime);
+        //     transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        //     // cC.Move(input * moveSpeed * Time.deltaTime);
+        // }
     }
 
     void FixedUpdate()
@@ -57,7 +68,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.CheckSphere(foot.position, footOverLapSphereRadius, mask);
 
         followTarget.eulerAngles = followTargetRotation;
-        moveDir = (followTarget.forward * input.y + followTarget.right * input.x);
+        moveDir = (followTarget.forward * input.z + followTarget.right * input.x);
         moveDir.y = 0;
         moveDir.Normalize();
 

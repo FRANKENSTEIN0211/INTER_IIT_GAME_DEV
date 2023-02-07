@@ -27,6 +27,7 @@ public class EndScene : MonoBehaviour
     {
         Time.timeScale=1f;
         endMenu.SetActive(false);
-        SceneManager.LoadScene("SampleScene");
+        Transition Trann = FindObjectOfType<Transition>();
+        Trann.LoadLevel3();
     }
 }

@@ -7,7 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Transition Trann = FindObjectOfType<Transition>();
+        Trann.LoadLevel1();
     }
 
     public void QuitGame()

@@ -36,8 +36,9 @@ public class PlayerController : MonoBehaviour
     {
         followTarget.eulerAngles = followTargetRotation;
         moveDir = (followTarget.forward * input.y + followTarget.right * input.x).normalized;
-        moveDir.y = 0f;
-        rb.velocity = moveDir * moveSpeed * Time.fixedDeltaTime;
+        Vector3 vel = moveDir * moveSpeed * Time.fixedDeltaTime;
+        rb.velocity = new Vector3(vel.x, rb.velocity.y, vel.z);
+        
     }
 
 }

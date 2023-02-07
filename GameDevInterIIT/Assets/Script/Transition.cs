@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Transition : MonoBehaviour
 {
     public Animator animator;
-    public float transitionDelayTime = 1f;
+    public float transitionDelayTime = 0.1f;
     void Awake()
     {
         animator = GameObject.Find("Transition").GetComponent<Animator>();

@@ -7,7 +7,7 @@ public class CombatAnimationController : MonoBehaviour
     Animator anim;
     public float animSpeed = 1.5f;
     private string[] AttackAnims = {"Attack_01", "Attack_02", "Attack_03", "Attack_04", "Attack_05"};
-    //private string[] AttackAnims = {"Attack_02"};
+    // private string[] AttackAnims = {"Attack_02"};
     private string[] DamageAnims = { "Damage_01","Damage_02" };
     [SerializeField] GameObject attackPoint;
     public float attackRange = 0.5f;

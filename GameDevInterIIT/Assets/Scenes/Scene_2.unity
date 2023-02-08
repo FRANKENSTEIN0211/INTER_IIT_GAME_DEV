@@ -37076,14 +37076,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1663180067}
-  combatAnim: {fileID: 0}
   attackRange: 1.43
   attackDamage: 20
-  attackRate: 1
+  attackRate: 2
   nextAttackTime: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerHealth: 100
+  maxHealth: 0
+  currentHealth: 0
+  bloodPrefabs: []
+  hitPoint: {fileID: 0}
 --- !u!114 &8941738162145807247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37096,8 +37100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c03f00b94e675444ba6eaee4932d763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   animSpeed: 1.5
+  attackPoint: {fileID: 0}
+  attackRange: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8941738162145807248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37133,7 +37141,7 @@ MonoBehaviour:
   coolDownTime: 1
   CoolDownTimer: 0
   lerpTime: 10
-  moveDir: {x: 0, y: 0, z: 0}
+  targetLookDir: {x: 0, y: 0, z: 0}
 --- !u!1 &8941738162212390857
 GameObject:
   m_ObjectHideFlags: 0

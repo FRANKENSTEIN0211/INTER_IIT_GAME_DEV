@@ -17,24 +17,29 @@ public class PlayerAim : MonoBehaviour
     }
     void Update()
     {  
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit cameraRayHit;
-        if (Physics.Raycast(cameraRay, out cameraRayHit)){
-            Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
-            targetLookDir = (targetPosition-transform.position).normalized;
-        }
+        // Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // RaycastHit cameraRayHit;
+        // if (Physics.Raycast(cameraRay, out cameraRayHit)){
+        //     Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
+        //     targetLookDir = (targetPosition-transform.position).normalized;
+        // }
 
     
-        if(Input.GetMouseButton(1)){
-            //transform.Rotate(new Vector3(0, Vector3.SignedAngle(transform.forward, lookDir, new Vector3(0,1,0)), 0));
-            lookDir = Vector3.Lerp(lookDir, targetLookDir, lerpTime * Time.deltaTime);
-            transform.forward = lookDir;
-        }else{
-            Vector3 moveDir = playerMovementScript.moveDir;
-            if(moveDir != Vector3.zero) lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.deltaTime);
-            lookDir.y = transform.forward.y;
-            transform.forward = lookDir;
-        }
+        // if(Input.GetMouseButton(1)){
+        //     //transform.Rotate(new Vector3(0, Vector3.SignedAngle(transform.forward, lookDir, new Vector3(0,1,0)), 0));
+        //     lookDir = Vector3.Lerp(lookDir, targetLookDir, lerpTime * Time.deltaTime);
+        //     transform.forward = lookDir;
+        // }else{
+        //     Vector3 moveDir = playerMovementScript.moveDir;
+        //     if(moveDir != Vector3.zero) lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.deltaTime);
+        //     lookDir.y = transform.forward.y;
+        //     transform.forward = lookDir;
+        // }
+
+        Vector3 moveDir = playerMovementScript.moveDir;
+        if(moveDir != Vector3.zero) lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.deltaTime);
+        lookDir.y = transform.forward.y;
+        transform.forward = lookDir;
     }
 
 }

@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
 
         }
 
+        gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
+
         if(currentHealth <= 0){
             Die();
         }

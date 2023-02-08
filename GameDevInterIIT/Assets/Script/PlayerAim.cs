@@ -9,7 +9,7 @@ public class PlayerAim : MonoBehaviour
     private Vector3 old_mouse_position = Vector3.zero;
     public float coolDownTime = 1f, CoolDownTimer = 0;
     public float lerpTime = 10f;
-    public Vector3 moveDir;
+    public Vector3 targetLookDir = Vector3.zero;
 
     void Start(){
         rb = gameObject.GetComponent<Rigidbody>();
@@ -21,17 +21,18 @@ public class PlayerAim : MonoBehaviour
         RaycastHit cameraRayHit;
         if (Physics.Raycast(cameraRay, out cameraRayHit)){
             Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
-            moveDir = (targetPosition-transform.position).normalized;
+            targetLookDir = (targetPosition-transform.position).normalized;
         }
 
     
         if(Input.GetMouseButton(1)){
             //transform.Rotate(new Vector3(0, Vector3.SignedAngle(transform.forward, lookDir, new Vector3(0,1,0)), 0));
-            lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.deltaTime);
+            lookDir = Vector3.Lerp(lookDir, targetLookDir, lerpTime * Time.deltaTime);
             transform.forward = lookDir;
         }else{
             Vector3 moveDir = playerMovementScript.moveDir;
             if(moveDir != Vector3.zero) lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.deltaTime);
+            lookDir.y = transform.forward.y;
             transform.forward = lookDir;
         }
     }

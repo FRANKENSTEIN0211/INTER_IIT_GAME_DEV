@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     public int maxHealth = 0;
     public int currentHealth;
     PlayerController playerController;
-
+    public GameObject[] bloodPrefabs;
+    public Transform hitPoint;
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
         playerController = gameObject.GetComponent<PlayerController>();
@@ -23,13 +24,12 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if(Time.time >= nextAttackTime){   
+        if(Time.time >= nextAttackTime){
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Debug.Log("mouse0 pressed");
                 combatAnim.AttackAnim();
                 Attack();
-                // Debug.Log(Time.time);
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -46,6 +46,14 @@ public class Player : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
+
+            Vector3 direction = attackPoint.position;
+            hitPoint = enemy.transform;
+            float angle = transform.rotation.eulerAngles.y + 180;
+            Debug.Log(angle);
+            GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
+            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
+            Destroy(instance, 5f);
         }
     }
 

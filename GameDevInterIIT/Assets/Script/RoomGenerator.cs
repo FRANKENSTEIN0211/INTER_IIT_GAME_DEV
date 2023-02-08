@@ -19,7 +19,7 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    void GenerateNextRoom(){
+    public void GenerateNextRoom(){
         int count = activeRooms.Count;
         GameObject prevRoom = activeRooms[count-1];
         Transform prevEndAnchor = prevRoom.transform.Find("EndAnchor");

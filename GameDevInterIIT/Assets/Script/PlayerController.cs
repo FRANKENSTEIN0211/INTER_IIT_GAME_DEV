@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             followTarget.rotation = followTargetRotation;
         }
 
-        Vector3 vel = moveDir * moveSpeed * (Time.fixedUnscaledDeltaTime / Time.timeScale) * (sprinting ? sprintMultiplier : 1);
+        Vector3 vel = moveDir * moveSpeed * (Time.fixedUnscaledDeltaTime / Time.timeScale )* (sprinting ? sprintMultiplier : 1);
 
         if(isGrounded && jump){
             wasJumping = true;

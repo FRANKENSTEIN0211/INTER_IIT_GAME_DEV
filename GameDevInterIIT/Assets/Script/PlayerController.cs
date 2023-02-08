@@ -15,10 +15,10 @@ public class PlayerController : MonoBehaviour
 
     public float gravity;
     public float moveSpeed = 10f;
-    public float rotateSpeed = 5f;
+    //public float rotateSpeed = 5f;
     public float jumpSpeed = 10f;
-    public Vector3 followTargetRotation;
-    public float minAngle = -60f, maxAngle = 85f;
+    // public Vector3 followTargetRotation;
+    //public float minAngle = -60f, maxAngle = 85f;
     public bool isGrounded = true, jump = false, sprinting = false, wasJumping = false;
     public float footOverLapSphereRadius = 0.1f;
     public float lerpConstant = 10f;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     LayerMask mask;
     void Start()
     {
-        followTargetRotation = Vector3.zero;
+        // followTargetRotation = Vector3.zero;
         rb = gameObject.GetComponent<Rigidbody>();
         mask = LayerMask.GetMask("Map");
         playerAnimator = GetComponent<Animator>();
@@ -40,12 +40,13 @@ public class PlayerController : MonoBehaviour
         input.z = Input.GetAxisRaw("Vertical");
         input.Normalize();
         
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        moveDir = (Camera.main.transform.forward * input.z + Camera.main.transform.right * input.x);
+        // float mouseX = Input.GetAxis("Mouse X");
+        // float mouseY = Input.GetAxis("Mouse Y");
 
-        followTargetRotation.y += mouseX * rotateSpeed * Time.deltaTime;
-        followTargetRotation.x -= mouseY * rotateSpeed * Time.deltaTime;    
-        followTargetRotation.x = Mathf.Clamp(followTargetRotation.x, minAngle, maxAngle);
+        // followTargetRotation.y += mouseX * rotateSpeed * Time.deltaTime;
+        // followTargetRotation.x -= mouseY * rotateSpeed * Time.deltaTime;    
+        // followTargetRotation.x = Mathf.Clamp(followTargetRotation.x, minAngle, maxAngle);
 
         if(Input.GetKeyDown("space") && isGrounded){
             jump = true;
@@ -72,17 +73,18 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(foot.position, footOverLapSphereRadius, mask);
 
-        followTarget.eulerAngles = followTargetRotation;
-        moveDir = (followTarget.forward * input.z + followTarget.right * input.x);
+        //followTarget.eulerAngles = followTargetRotation;
+        //moveDir = (followTarget.forward * input.z + followTarget.right * input.x);
+
         moveDir.y = 0;
         moveDir.Normalize();
 
-        if(moveDir != Vector3.zero){
-            Vector3 targetRotation = new Vector3(moveDir.x, transform.forward.y, moveDir.z);
-            Quaternion followTargetRotation = followTarget.rotation;
-            transform.forward = Vector3.Lerp(transform.forward, targetRotation, lerpConstant * Time.fixedDeltaTime);
-            followTarget.rotation = followTargetRotation;
-        }
+        // if(moveDir != Vector3.zero){
+        //     Vector3 targetRotation = new Vector3(moveDir.x, transform.forward.y, moveDir.z);
+        //     Quaternion followTargetRotation = followTarget.rotation;
+        //     transform.forward = Vector3.Lerp(transform.forward, targetRotation, lerpConstant * Time.fixedDeltaTime);
+        //     followTarget.rotation = followTargetRotation;
+        // }
 
         Vector3 vel = moveDir * moveSpeed * (Time.fixedUnscaledDeltaTime / Time.timeScale )* (sprinting ? sprintMultiplier : 1);
 

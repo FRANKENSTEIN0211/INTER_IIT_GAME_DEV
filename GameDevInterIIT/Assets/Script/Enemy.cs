@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
         // hurt animation
 
+        gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
+
         if(currentHealth <= 0){
             Die();
         }

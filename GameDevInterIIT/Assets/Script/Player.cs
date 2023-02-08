@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     void PlayerDie()
     {
         playerController.enabled = false;
+        combatAnim.enabled = false;
         combatAnim.Death();
     }
     void OnDrawGizmosSelected(){

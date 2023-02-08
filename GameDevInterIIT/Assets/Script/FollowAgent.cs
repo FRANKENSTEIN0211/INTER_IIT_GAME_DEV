@@ -26,6 +26,7 @@ public class FollowAgent : MonoBehaviour
     public Transform hitPoint;
     public GameObject[] bloodPrefabs;
     public LayerMask playerLayer;
+    Enemy enemy;
 
     private string[] AttackAnims = {"Attack_01", "Attack_02", "Attack_03", "Attack_04"};
     private string[] DeathAnims = {"Dead_01", "Dead_02"};
@@ -37,6 +38,7 @@ public class FollowAgent : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
         battle_state=false;
+        enemy = GetComponent<Enemy>();
         
         playerInstance = GameObject.FindWithTag("Player");
         if (playerInstance == null)
@@ -78,6 +80,7 @@ public class FollowAgent : MonoBehaviour
                 }
             }
         }
+        enemy.TakeDamage(0);
     }
 
     private void DestroyEnemy()
@@ -88,10 +91,12 @@ public class FollowAgent : MonoBehaviour
     public void Attack(){
         int index = Random.Range(0, AttackAnims.Length);
         anim.SetBool(AttackAnims[index], true);
-        
+    }
+    public void GivePlayerDamage()
+    {
         Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
 
-        foreach(Collider player in hitPlayer)
+        foreach (Collider player in hitPlayer)
         {
             player.GetComponent<Player>().TakeDamage(attackDamage);
             // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
@@ -101,7 +106,7 @@ public class FollowAgent : MonoBehaviour
             float angle = transform.rotation.eulerAngles.y + 180;
             Debug.Log(angle);
             GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
-            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
+            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle + 90, 0));
             Destroy(instance, 5f);
         }
     }

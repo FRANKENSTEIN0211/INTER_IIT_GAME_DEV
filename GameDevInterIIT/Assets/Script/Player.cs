@@ -11,8 +11,7 @@ public class Player : MonoBehaviour
     public float attackRate = 1f;
     public float nextAttackTime = 0f;
     public LayerMask enemyLayer;
-    [SerializeField] float playerHealth = 100f;
-    public int maxHealth = 0;
+    public int maxHealth = 100;
     public int currentHealth;
     PlayerController playerController;
     public GameObject[] bloodPrefabs;
@@ -29,7 +28,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("mouse0 pressed");
                 combatAnim.AttackAnim();
-                Attack();
+                //Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -37,20 +36,14 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        //Attack anim
-
-        //Enemies in range
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
 
         foreach(Collider enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
-
             Vector3 direction = attackPoint.position;
             hitPoint = enemy.transform;
             float angle = transform.rotation.eulerAngles.y + 180;
-            Debug.Log(angle);
             GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
             var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
             Destroy(instance, 5f);
@@ -73,6 +66,7 @@ public class Player : MonoBehaviour
     {
         playerController.enabled = false;
         combatAnim.enabled = false;
+        gameObject.GetComponent<Player>().enabled = false;
         combatAnim.Death();
     }
     void OnDrawGizmosSelected(){

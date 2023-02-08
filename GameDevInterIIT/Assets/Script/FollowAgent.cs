@@ -18,6 +18,15 @@ public class FollowAgent : MonoBehaviour
 
     private bool isDeadTriggered = false;
 
+    public float nextAttackTime = 0f;
+    public float attackRate = 1f;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public int attackDamage = 10;
+    public Transform hitPoint;
+    public GameObject[] bloodPrefabs;
+    public LayerMask playerLayer;
+
     private string[] AttackAnims = {"Attack_01", "Attack_02", "Attack_03", "Attack_04"};
     private string[] DeathAnims = {"Dead_01", "Dead_02"};
     void Start()
@@ -63,7 +72,10 @@ public class FollowAgent : MonoBehaviour
                 agent.SetDestination(transform.position);
                 battle_state = true;
                 anim.SetBool("IsChasing", false);
-                Attack();
+                if(Time.time >= nextAttackTime){
+                    Attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
         }
     }
@@ -76,5 +88,27 @@ public class FollowAgent : MonoBehaviour
     public void Attack(){
         int index = Random.Range(0, AttackAnims.Length);
         anim.SetBool(AttackAnims[index], true);
+        
+        Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
+
+        foreach(Collider player in hitPlayer)
+        {
+            player.GetComponent<Player>().TakeDamage(attackDamage);
+            // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
+
+            Vector3 direction = attackPoint.position;
+            hitPoint = player.transform;
+            float angle = transform.rotation.eulerAngles.y + 180;
+            Debug.Log(angle);
+            GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
+            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
+            Destroy(instance, 5f);
+        }
+    }
+
+    void OnDrawGizmosSelected(){
+        if(attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

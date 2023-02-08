@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     PlayerController playerController;
     public GameObject[] bloodPrefabs;
     public Transform hitPoint;
+    public float initialAttackRate = 1.5f;
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
         playerController = gameObject.GetComponent<PlayerController>();

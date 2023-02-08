@@ -37,7 +37,7 @@ public class PlayerAim : MonoBehaviour
         // }
 
         Vector3 moveDir = playerMovementScript.moveDir;
-        if(moveDir != Vector3.zero) lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.deltaTime);
+        if(moveDir != Vector3.zero) lookDir = Vector3.Lerp(lookDir, moveDir, lerpTime * Time.unscaledDeltaTime);
         lookDir.y = transform.forward.y;
         transform.forward = lookDir;
     }

@@ -37050,11 +37050,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1871629598}
   foot: {fileID: 2034334611}
-  rb: {fileID: 0}
+  rb: {fileID: 8941738162145807243}
   input: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
-  gravity: 0
-  moveSpeed: 400
+  gravity: 19.62
+  moveSpeed: 250
   jumpSpeed: 10
   isGrounded: 1
   jump: 0
@@ -37062,7 +37062,7 @@ MonoBehaviour:
   wasJumping: 0
   footOverLapSphereRadius: 0.5
   lerpConstant: 20
-  sprintMultiplier: 1.8
+  sprintMultiplier: 2.88
 --- !u!114 &8941738162145807246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37084,6 +37084,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  bloodPrefabs: []
+  hitPoint: {fileID: 0}
 --- !u!114 &8941738162145807247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37133,7 +37135,7 @@ MonoBehaviour:
   coolDownTime: 1
   CoolDownTimer: 0
   lerpTime: 10
-  moveDir: {x: 0, y: 0, z: 0}
+  targetLookDir: {x: 0, y: 0, z: 0}
 --- !u!1 &8941738162212390857
 GameObject:
   m_ObjectHideFlags: 0

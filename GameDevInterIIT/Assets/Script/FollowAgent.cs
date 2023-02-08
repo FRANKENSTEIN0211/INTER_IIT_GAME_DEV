@@ -52,7 +52,7 @@ public class FollowAgent : MonoBehaviour
         if (playerInstance != null && !isDeadTriggered)
         {
             float distance = Vector3.Distance(transform.position, playerInstance.transform.position);
-            if (GetComponent<Enemy>().currentHealth <= 0f){
+            if (enemy.currentHealth <= 0f){
                 anim.SetBool("IsChasing", false);
                 int index = Random.Range(0, DeathAnims.Length);
                 anim.SetBool(DeathAnims[index], true);
@@ -75,7 +75,7 @@ public class FollowAgent : MonoBehaviour
                 battle_state = true;
                 anim.SetBool("IsChasing", false);
                 if(Time.time >= nextAttackTime){
-                    Attack();
+                    EnemyAttack();
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
@@ -88,9 +88,12 @@ public class FollowAgent : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Attack(){
-        int index = Random.Range(0, AttackAnims.Length);
-        anim.SetBool(AttackAnims[index], true);
+    public void EnemyAttack(){
+        if (enemy.currentHealth > 0)
+        {
+            int index = Random.Range(0, AttackAnims.Length);
+            anim.SetBool(AttackAnims[index], true);
+        }
     }
     public void GivePlayerDamage()
     {

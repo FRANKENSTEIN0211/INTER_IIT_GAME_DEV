@@ -4318,7 +4318,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38268346, y: -0.000000015896623, z: 0.0000000065845964, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.000000015896623, z: -0.0000000065845964, w: 0.92387956}
   m_LocalPosition: {x: -182.92, y: 15.622616, z: -86.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6039,6 +6039,58 @@ PrefabInstance:
       propertyPath: attackRate
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 2629016494315086251, guid: 5776aed3bb070e54cb09a11c8a6a5831, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3034872428933141512, guid: 52d94bfe44b09ff4b9e9788e9a86a778, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2360933683143488451, guid: 730678b8a5330c449ada55bde83402ce, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 7935733108997359171, guid: e822d59151d3597428b0b63bf25355e7, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5865290276592450837, guid: 42a28376f729c864a81abf66add7a418, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 764304066602274965, guid: 4a322f29a9e1fa54f90223de8bcf3a28, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 4288107571095694937, guid: c3f8938673a07704e93ac52eee18f410, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 1165703760847671896, guid: bb596cd440832554089a7125852e836f, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 4152240900433254336, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 6463355840203370170, guid: 70ead61ff20b23b4e97b90d8e8997ecd, type: 3}
+    - target: {fileID: 8778400386953504605, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
+      propertyPath: bloodPrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 5170585893340993107, guid: 7b88f11816abaa34c9e02cbaa8485321, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad47aaf0db5612b49bef02ec73a92f1b, type: 3}
 --- !u!64 &1286836695
@@ -8271,7 +8323,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797849465}
-  m_LocalRotation: {x: 0.38268346, y: -0.000000015896623, z: 0.0000000065845964, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.000000015896623, z: -0.0000000065845964, w: 0.92387956}
   m_LocalPosition: {x: -182.92, y: 15.622616, z: -86.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37890,7 +37942,11 @@ MonoBehaviour:
     m_Bits: 256
   maxHealth: 100
   currentHealth: 0
-  bloodPrefabs: []
+  bloodPrefabs:
+  - {fileID: 7935733108997359171, guid: e822d59151d3597428b0b63bf25355e7, type: 3}
+  - {fileID: 2629016494315086251, guid: 5776aed3bb070e54cb09a11c8a6a5831, type: 3}
+  - {fileID: 3034872428933141512, guid: 52d94bfe44b09ff4b9e9788e9a86a778, type: 3}
+  - {fileID: 2360933683143488451, guid: 730678b8a5330c449ada55bde83402ce, type: 3}
   hitPoint: {fileID: 0}
 --- !u!114 &8941738162145807247
 MonoBehaviour:

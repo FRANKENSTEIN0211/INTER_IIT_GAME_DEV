@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float lerpConstant = 10f;
     public float sprintMultiplier = 1.5f;
     Animator playerAnimator;
+    public bool canMove = true;
 
     LayerMask mask;
     void Start()
@@ -41,8 +42,10 @@ public class PlayerController : MonoBehaviour
         input.x = Input.GetAxisRaw("Horizontal");
         input.z = Input.GetAxisRaw("Vertical");
         input.Normalize();
-        
-        moveDir = (Camera.main.transform.forward * input.z + Camera.main.transform.right * input.x);
+        if (canMove)
+        {
+            moveDir = (Camera.main.transform.forward * input.z + Camera.main.transform.right * input.x);
+        }
         // float mouseX = Input.GetAxis("Mouse X");
         // float mouseY = Input.GetAxis("Mouse Y");
 
@@ -87,7 +90,6 @@ public class PlayerController : MonoBehaviour
         //     transform.forward = Vector3.Lerp(transform.forward, targetRotation, lerpConstant * Time.fixedDeltaTime);
         //     followTarget.rotation = followTargetRotation;
         // }
-
         Vector3 vel = moveDir * moveSpeed * (Time.fixedUnscaledDeltaTime / Time.timeScale )* (sprinting ? sprintMultiplier : 1);
 
         if(isGrounded && jump){
@@ -103,8 +105,10 @@ public class PlayerController : MonoBehaviour
         }
 
         vel.y -= gravity * Time.fixedUnscaledDeltaTime / Time.timeScale;
-
-        rb.velocity = vel;
+        if (canMove)
+        {
+            rb.velocity = vel;
+        }
         if (wasJumping){
             playerAnimator.SetBool("IsRunning", false);
             playerAnimator.SetBool("IsWalkingForward", false);
@@ -140,5 +144,16 @@ public class PlayerController : MonoBehaviour
             wasJumping = false;
         }
     }
+    public void PlayerCanMove()
+    {
+        canMove = true;
+        Debug.Log("canMove is true now");
+    }
+    public void PlayerCannotMove()
+    {
+        canMove=false;
+        Debug.Log("canMove is false now");
+    }
+
 
 }

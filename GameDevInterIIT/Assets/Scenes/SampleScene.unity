@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -495,8 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8941738161990790818}
-  climbHeight: 3
+  playerPrefab: {fileID: 0}
+  deathDelay: 0.8
 --- !u!195 &20813495
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6865,8 +6865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8941738161990790818}
-  climbHeight: 3
+  playerPrefab: {fileID: 0}
+  deathDelay: 0.8
 --- !u!195 &312358187
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -34060,8 +34060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8941738161990790818}
-  climbHeight: 3
+  playerPrefab: {fileID: 0}
+  deathDelay: 0.8
 --- !u!195 &1517787724
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -37245,8 +37245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8941738161990790818}
-  climbHeight: 3
+  playerPrefab: {fileID: 0}
+  deathDelay: 0.8
 --- !u!195 &1648224628
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -41585,8 +41585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a693d94db851b0419c8c0d3274889c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8941738161990790818}
-  climbHeight: 3
+  playerPrefab: {fileID: 0}
+  deathDelay: 0.8
 --- !u!195 &1818305125
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -50352,6 +50352,7 @@ GameObject:
   - component: {fileID: 8941738162145807240}
   - component: {fileID: 8941738162145807245}
   - component: {fileID: 8941738162145807246}
+  - component: {fileID: 8941738162145807247}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -51499,6 +51500,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   input: {x: 0, y: 0, z: 0}
   moveDir: {x: 0, y: 0, z: 0}
+  gravity: 0
   moveSpeed: 600
   rotateSpeed: 500
   jumpSpeed: 10
@@ -51508,6 +51510,7 @@ MonoBehaviour:
   isGrounded: 1
   jump: 0
   sprinting: 0
+  wasJumping: 0
   footOverLapSphereRadius: 0.5
   lerpConstant: 10
   sprintMultiplier: 1.8
@@ -51526,8 +51529,29 @@ MonoBehaviour:
   attackPoint: {fileID: 1663180067}
   attackRange: 1.43
   attackDamage: 20
-  attackRate: 1
+  attackRate: 10
   nextAttackTime: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerHealth: 100
+  maxHealth: 100
+  currentHealth: 0
+--- !u!114 &8941738162145807247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941738161990824578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c03f00b94e675444ba6eaee4932d763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animSpeed: 1.5
+  attackPoint: {fileID: 1663180066}
+  attackRange: 0.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256

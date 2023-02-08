@@ -1165,7 +1165,7 @@ Transform:
   m_GameObject: {fileID: 8936514736222944692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 133.83743, y: -3.9999998, z: -66.17808}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8936514736222724426}
@@ -1277,6 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 8323547478210029063, guid: 9e6fa47eb8dc71241b1b39746cbcf270, type: 3}
+  deathDelay: 3
 --- !u!1 &8936514736222945962
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,12 +27,16 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame(){
         pauseMenu.SetActive(true);
+        playerinstance.GetComponent<PlayerController>().enabled = false;
+        playerinstance.GetComponent<TimeController>().enabled = false;
         Time.timeScale=0f;
         isPaused=true;
     }
 
     public void ResumeGame(){
         pauseMenu.SetActive(false);
+        playerinstance.GetComponent<PlayerController>().enabled = true;
+        playerinstance.GetComponent<TimeController>().enabled = true;
         Time.timeScale=1f;
         isPaused=false;
     }

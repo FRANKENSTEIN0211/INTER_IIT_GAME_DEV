@@ -9,8 +9,10 @@ public class PauseMenu : MonoBehaviour
 
     public static bool isPaused;
     
+    private GameObject playerinstance;
     void Start(){
         pauseMenu.SetActive(false);
+        playerinstance = GameObject.FindWithTag("Player");
     }
 
     void Update(){

@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("IsRunning", true);
             playerAnimator.SetBool("IsWalkingForward", false);
-            Debug.Log("running");
         }
         else
         {

@@ -5,31 +5,37 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Transform attackPoint;
-    public CombatAnimationController combatAnim;
+    CombatAnimationController combatAnim;
     public float attackRange = 0.5f;
     public int attackDamage = 20;
     public float attackRate = 1f;
     public float nextAttackTime = 0f;
     public LayerMask enemyLayer;
+    [SerializeField] float playerHealth = 100f;
+    public int maxHealth = 0;
+    public int currentHealth;
+    PlayerController playerController;
     public GameObject[] bloodPrefabs;
     public Transform hitPoint;
-
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
+        playerController = gameObject.GetComponent<PlayerController>();
+        currentHealth = maxHealth;
     }
     void Update()
     {
-        if(Time.time >= nextAttackTime){   
+        if(Time.time >= nextAttackTime){
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                combatAnim.Attack();
+                Debug.Log("mouse0 pressed");
+                combatAnim.AttackAnim();
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
     }
 
-    void Attack()
+    public void Attack()
     {
         //Attack anim
 
@@ -51,6 +57,23 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        combatAnim.TakeDamageAnim();
+        if (currentHealth <= 0)
+        {
+            PlayerDie();
+        }
+
+    }
+    void PlayerDie()
+    {
+        playerController.enabled = false;
+        combatAnim.Death();
+    }
     void OnDrawGizmosSelected(){
         if(attackPoint == null)
             return;

@@ -24,13 +24,17 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if(Time.time >= nextAttackTime){
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Debug.Log("mouse0 pressed");
-                combatAnim.AttackAnim();
-                //Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
+        if (!playerController.wasJumping)
+        {
+
+            if(Time.time >= nextAttackTime){
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Debug.Log("mouse0 pressed");
+                    combatAnim.AttackAnim();
+                    //Attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
         }
     }

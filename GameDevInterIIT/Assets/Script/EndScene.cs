@@ -12,12 +12,12 @@ public class EndScene : MonoBehaviour
     public  TMP_Text ScoreText;
 
     public void Update(){
-        ScoreText.text=scorecard.GetComponent<ScoreManager>().highScore.ToString();
+        ScoreText.text=ScoreManager.highScore.ToString();
     }
 
     public void SaveName()
     {
-        int pscore=scorecard.GetComponent<ScoreManager>().highScore;
+        int pscore=ScoreManager.highScore;
         string playerName = nameInput.text;
         string pname=playerName;
         HighscoreTable.AddHighscoreEntry(pscore,pname);

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public GameObject[] bloodPrefabs;
     public Transform hitPoint;
     public float initialAttackRate = 1.5f;
+    public GameObject endMenu;
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
         playerController = gameObject.GetComponent<PlayerController>();
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0)
         {
             PlayerDie();
+            endMenu.SetActive(true);
+            Time.timeScale=0f;
         }
 
     }

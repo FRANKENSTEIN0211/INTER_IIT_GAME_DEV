@@ -10,11 +10,13 @@ public class Enemy : MonoBehaviour
     public int currentHealth;
     Animator animator;
     private string[] DamageAnims = { "Hit_01", "Hit_02" };
-
+    public static int highScore;
+    public GameObject scorecard;
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        highScore=0;
     }
 
     public void TakeDamage(int damage){
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
 
         if(currentHealth <= 0){
             Die();
+            ScoreManager.highScore+=50;
         }
 
     }

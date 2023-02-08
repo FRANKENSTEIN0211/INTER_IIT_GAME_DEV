@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         if(levelClear){
             roomGenerator.GenerateNextRoom();
+            EnemySpawner.numberOfZombies++;
             currentLevel++;
             levelClear = false;
         }

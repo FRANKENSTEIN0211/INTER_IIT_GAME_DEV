@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int highScore=0;
+    public static int highScore=0;
+    public TextMeshProUGUI scoreText;
 
     public bool IsDead;
     public GameObject endMenu;
@@ -19,16 +21,6 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!IsDead)
-            highScore++;
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Handle the collision
-        if(collision.gameObject.tag=="Player"){
-                endMenu.SetActive(true);
-                IsDead=true;
-                Time.timeScale=0f;
-        }
+        scoreText.text="SCORE: "+highScore.ToString();
     }
 }

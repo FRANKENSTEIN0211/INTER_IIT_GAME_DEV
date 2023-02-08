@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 10f;
     // public Vector3 followTargetRotation;
     //public float minAngle = -60f, maxAngle = 85f;
-    public bool isGrounded = true, jump = false, sprinting = false, wasJumping = false;
+    public bool isGrounded = true, jump = false, sprinting = true, wasJumping = false;
     public float footOverLapSphereRadius = 0.1f;
     public float lerpConstant = 10f;
     public float sprintMultiplier = 1.5f;
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         mask = LayerMask.GetMask("Map");
         playerAnimator = GetComponent<Animator>();
         gravity = -Physics.gravity.y;
+
+        sprinting = true;
     }
     void Update()
     {
@@ -52,13 +54,13 @@ public class PlayerController : MonoBehaviour
             jump = true;
         }
 
-        if(Input.GetKeyDown("left shift") && isGrounded){
-            sprinting = true;
-        }
+        // if(Input.GetKeyDown("left shift") && isGrounded){
+        //     sprinting = true;
+        // }
 
-        if(Input.GetKeyUp("left shift")){
-            sprinting = false;
-        }
+        // if(Input.GetKeyUp("left shift")){
+        //     sprinting = false;
+        // }
 
         
         // if(input.magnitude >= 0.1f){

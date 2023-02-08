@@ -7454,6 +7454,7 @@ GameObject:
   - component: {fileID: 1797849467}
   - component: {fileID: 1797849466}
   - component: {fileID: 1797849468}
+  - component: {fileID: 1797849469}
   m_Layer: 0
   m_Name: CM IsoCam
   m_TagString: Untagged
@@ -7537,6 +7538,36 @@ MonoBehaviour:
   ScrollIncrement: 1
   minFOV: 20
   maxFOV: 60
+--- !u!114 &1797849469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797849465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 128
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 1
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!65 &1800991878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37076,7 +37107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1663180067}
-  combatAnim: {fileID: 0}
   attackRange: 1.43
   attackDamage: 20
   attackRate: 1
@@ -37084,6 +37114,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerHealth: 100
+  maxHealth: 0
+  currentHealth: 0
   bloodPrefabs: []
   hitPoint: {fileID: 0}
 --- !u!114 &8941738162145807247
@@ -37098,8 +37131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c03f00b94e675444ba6eaee4932d763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   animSpeed: 1.5
+  attackPoint: {fileID: 0}
+  attackRange: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8941738162145807248
 MonoBehaviour:
   m_ObjectHideFlags: 0

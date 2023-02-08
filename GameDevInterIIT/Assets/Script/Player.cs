@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float attackRate = 1f;
     public float nextAttackTime = 0f;
     public LayerMask enemyLayer;
+    public GameObject[] bloodPrefabs;
+    public Transform hitPoint;
 
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
@@ -22,7 +24,6 @@ public class Player : MonoBehaviour
             {
                 combatAnim.Attack();
                 Attack();
-                // Debug.Log(Time.time);
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -39,6 +40,14 @@ public class Player : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
+
+            Vector3 direction = attackPoint.position;
+            hitPoint = enemy.transform;
+            float angle = transform.rotation.eulerAngles.y + 180;
+            Debug.Log(angle);
+            GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
+            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
+            Destroy(instance, 5f);
         }
     }
 

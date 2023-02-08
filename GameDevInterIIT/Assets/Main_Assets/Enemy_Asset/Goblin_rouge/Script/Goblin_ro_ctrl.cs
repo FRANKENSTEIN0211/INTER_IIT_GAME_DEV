@@ -11,6 +11,8 @@ public class Goblin_ro_ctrl : MonoBehaviour {
 	private Rigidbody Rb;
 
 	public float deathDelay = 3.0f;
+
+	private string[] AttackAnims = {"Attack_01", "Attack_02", "Attack_03", "Attack_04"};
 	
 	
 	// Use this for initialization

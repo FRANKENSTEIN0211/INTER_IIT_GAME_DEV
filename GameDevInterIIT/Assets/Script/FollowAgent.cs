@@ -18,6 +18,8 @@ public class FollowAgent : MonoBehaviour
 
     private bool isDeadTriggered = false;
 
+    private string[] AttackAnims = {"Attack_01", "Attack_02", "Attack_03", "Attack_04"};
+    private string[] DeathAnims = {"Dead_01", "Dead_02"};
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -41,8 +43,8 @@ public class FollowAgent : MonoBehaviour
             float distance = Vector3.Distance(transform.position, playerInstance.transform.position);
             if (GetComponent<Enemy>().currentHealth <= 0f){
                 anim.SetBool("IsChasing", false);
-                anim.SetBool("IsAttacking", false);
-                anim.SetBool("IsDead", true);
+                int index = Random.Range(0, DeathAnims.Length);
+                anim.SetBool(DeathAnims[index], true);
                 isDeadTriggered=true;
                 Invoke("DestroyEnemy", deathDelay);
             }else if(distance > attackDistance)
@@ -50,24 +52,18 @@ public class FollowAgent : MonoBehaviour
                 agent.SetDestination(playerInstance.transform.position);
                 if(Rb.velocity.magnitude>=0.1f)
                 {
-                    anim.SetBool("IsAttacking", false);
-                    anim.SetBool("IsDead", false);
                     anim.SetBool("IsChasing", true);
                 }
                 else
                 {
                     anim.SetBool("IsChasing", false);
-                    anim.SetBool("IsDead", false);
-                    anim.SetBool("IsAttacking", false);
                 }
             }else
             {
                 agent.SetDestination(transform.position);
                 battle_state = true;
                 anim.SetBool("IsChasing", false);
-                anim.SetBool("IsDead", false);
-                anim.SetBool("IsAttacking", true);
-                //Attack();
+                Attack();
             }
         }
     }
@@ -77,23 +73,8 @@ public class FollowAgent : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Attack()
-    {
-        int val=Random.Range(0,4);
-        switch(val%4)
-        {
-            case 0:
-                anim.SetInteger("moving", 1);
-                break;
-            case 1:
-                anim.SetInteger("moving", 2);
-                break;
-            case 2:
-                anim.SetInteger("moving", 3);
-                break;
-            case 3:
-                anim.SetInteger("moving", 4);
-                break;
-        }
+    public void Attack(){
+        int index = Random.Range(0, AttackAnims.Length);
+        anim.SetBool(AttackAnims[index], true);
     }
 }

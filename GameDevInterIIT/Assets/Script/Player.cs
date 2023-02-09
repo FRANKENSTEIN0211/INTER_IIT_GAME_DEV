@@ -22,6 +22,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioSource sword;
     public AudioClip whoosh;
+
+    [SerializeField]
+    private AudioSource hurt;
+    public AudioClip playerHurt;
+
+    [SerializeField]
+    private AudioSource death;
+    public AudioClip playerDeath;
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
         playerController = gameObject.GetComponent<PlayerController>();
@@ -51,13 +59,15 @@ public class Player : MonoBehaviour
 
         foreach(Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            Vector3 direction = attackPoint.position;
-            hitPoint = enemy.transform;
-            float angle = transform.rotation.eulerAngles.y + 180;
-            GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
-            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
-            Destroy(instance, 5f);
+            if(enemy.GetComponent<Enemy>().currentHealth > 0){
+                enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                Vector3 direction = attackPoint.position;
+                hitPoint = enemy.transform;
+                float angle = transform.rotation.eulerAngles.y + 180;
+                GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
+                var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
+                Destroy(instance, 5f);
+            }
         }
     }
 
@@ -65,7 +75,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+        hurt.PlayOneShot(playerHurt);
         combatAnim.TakeDamageAnim();
         if (currentHealth <= 0)
         {
@@ -79,6 +89,7 @@ public class Player : MonoBehaviour
     {
         playerController.enabled = false;
         combatAnim.enabled = false;
+        death.PlayOneShot(playerDeath);
         gameObject.GetComponent<Player>().enabled = false;
         combatAnim.Death();
     }

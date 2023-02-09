@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private AudioSource blood;
     public AudioClip bloodAudio;
+    public AudioClip deathSound;
     void Start()
     {
         currentHealth = maxHealth;
@@ -28,12 +29,14 @@ public class Enemy : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(0, DamageAnims.Length);
             animator.SetTrigger(DamageAnims[index]);
-            gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
+            Debug.Log("damage");
             blood.PlayOneShot(bloodAudio);
+            gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
         }
 
 
         if(currentHealth <= 0){
+            blood.PlayOneShot(deathSound);
             Die();
             ScoreManager.highScore+=50;
         }

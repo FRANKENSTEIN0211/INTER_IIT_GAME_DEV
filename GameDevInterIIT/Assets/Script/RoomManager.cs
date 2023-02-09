@@ -41,7 +41,7 @@ public class RoomManager : MonoBehaviour
         {
             int enemyIndex = Random.Range(0, enemyPrefabs.Length);
             int spawnIndex = Random.Range(0, spawnPoints.Length);
-            Vector3 randomPosition = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-5.0f, 5.0f));
+            Vector3 randomPosition = new Vector3(Random.Range(-2.0f, 2.0f), 0, Random.Range(-2.0f, 2.0f));
             randomPosition += spawnPoints[spawnIndex].position;
             GameObject newEnemy = Instantiate(enemyPrefabs[enemyIndex], randomPosition, Quaternion.identity);
             newEnemy.transform.SetParent(transform);

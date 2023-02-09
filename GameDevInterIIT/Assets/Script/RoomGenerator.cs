@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
 {
-    public GameObject roomPrefab;
+    public GameObject[] roomPrefabs;
     public int maxActiveRooms = 3;
     public List<GameObject> activeRooms = new List<GameObject>();
     void Start()
@@ -19,11 +19,13 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateNextRoom(){
+    public GameObject GenerateNextRoom(){
         int count = activeRooms.Count;
         GameObject prevRoom = activeRooms[count-1];
         Transform prevEndAnchor = prevRoom.transform.Find("EndAnchor");
-        GameObject newRoom = Instantiate(roomPrefab, prevEndAnchor.position, prevEndAnchor.rotation);
+
+        int roomIndex = Random.Range(0, roomPrefabs.Length);
+        GameObject newRoom = Instantiate(roomPrefabs[roomIndex], prevEndAnchor.position, prevEndAnchor.rotation);
         newRoom.transform.SetParent(GameObject.FindGameObjectWithTag("MainMap").transform);
         activeRooms.Add(newRoom);
         if(count > maxActiveRooms){
@@ -31,5 +33,6 @@ public class RoomGenerator : MonoBehaviour
             activeRooms.Remove(firstRoom);
             Destroy(firstRoom);
         }
+        return newRoom;
     }
 }

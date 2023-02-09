@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemySpawner : MonoBehaviour
 {
     public static int numberOfZombies=5;
-    public GameObject[] zombiePrefab;
+    public GameObject[] zombiePrefabs;
     private GameObject[] zombies;
     public int currentZombies;
 
@@ -36,9 +36,9 @@ public class EnemySpawner : MonoBehaviour
         zombies = new GameObject[number];
         for (int i = 0; i < number; i++)
         {
-            int zombieIndex = Random.Range(0, zombiePrefab.Length);
+            int zombieIndex = Random.Range(0, zombiePrefabs.Length);
             Vector3 randomPosition = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-5.0f, 5.0f));
-            zombies[i] = Instantiate(zombiePrefab[zombieIndex], transform.position + randomPosition, Quaternion.identity);
+            zombies[i] = Instantiate(zombiePrefabs[zombieIndex], transform.position + randomPosition, Quaternion.identity);
         }
         currentZombies = number;
     }
@@ -71,5 +71,9 @@ public class EnemySpawner : MonoBehaviour
         }
         roomGenerator = gameObject.GetComponent<RoomGenerator>();
     }
+
+
+
+
 }
 

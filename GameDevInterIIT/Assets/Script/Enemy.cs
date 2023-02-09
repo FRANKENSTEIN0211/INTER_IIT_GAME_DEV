@@ -29,9 +29,9 @@ public class Enemy : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(0, DamageAnims.Length);
             animator.SetTrigger(DamageAnims[index]);
-            Debug.Log("damage");
+            //Debug.Log("damage");
+            //gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
             blood.PlayOneShot(bloodAudio);
-            gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
         }
 
 

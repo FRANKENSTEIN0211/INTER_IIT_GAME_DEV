@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
                 //Debug.Log("hit");
             if(enemy.GetComponent<Enemy>().currentHealth > 0){
                 enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-                Debug.Log("hit");
+                //Debug.Log("hit");
                 Vector3 direction = attackPoint.position;
                 hitPoint = enemy.transform;
                 float angle = transform.rotation.eulerAngles.y + 180;

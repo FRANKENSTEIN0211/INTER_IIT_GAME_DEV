@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
                     //Attack();
                     nextAttackTime = Time.time + 1f / attackRate;
                     sword.PlayOneShot(whoosh, 0.7f);
-                    //Debug.Log("attack working");
+                    Debug.Log("attack working");
                 }
             }
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class TimeController : MonoBehaviour
     public float lerpSpeed = 15f;
     public bool slowMo;
     [SerializeField] float timePower = 100f;
+    [SerializeField] GameObject timeBar;
     void Start()
     {
         playerController = gameObject.GetComponent<PlayerController>();
@@ -31,6 +33,7 @@ public class TimeController : MonoBehaviour
                 timePower -= Time.unscaledDeltaTime*10f;
                 player.attackRate = player.initialAttackRate/Time.timeScale;
             }
+            timeBar.GetComponent<Slider>().value = timePower;
         }
         else{
             slowMo = false;

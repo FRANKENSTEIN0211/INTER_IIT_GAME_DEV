@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     public float initialAttackRate = 1.5f;
     public GameObject endMenu;
 
-    [SerializeField]
+    [SerializeField] GameObject healthBar;
     private AudioSource sword;
     public AudioClip whoosh;
     private GameObject playerinstance;
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
                 hitCount++;
             }
         }
+        
     }
 
 
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
             playerinstance.GetComponent<TimeController>().enabled = false;
             Time.timeScale=0f;
         }
-
+        healthBar.GetComponent<Slider>().value = currentHealth;
     }
     void PlayerDie()
     {

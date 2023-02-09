@@ -32715,6 +32715,7 @@ MonoBehaviour:
   initialAttackRate: 1.5
   endMenu: {fileID: 1811840367}
   healthBar: {fileID: 592630929}
+  sword: {fileID: 60476763}
   whoosh: {fileID: 8300000, guid: f7d3f915eed696d429753dd828172911, type: 3}
   hurt: {fileID: 1367606978}
   playerHurt: {fileID: 8300000, guid: 0b28ef3ef1855384ca3a7d79e7babe94, type: 3}

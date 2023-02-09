@@ -905,6 +905,7 @@ MonoBehaviour:
   blood: {fileID: 8847359217598082194}
   bloodAudio: {fileID: 8300000, guid: 4ac1d217e1905634cb1673d8391b41b7, type: 3}
   deathSound: {fileID: 0}
+  player: {fileID: 0}
 --- !u!195 &7239500887567785670
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -962,7 +963,7 @@ MonoBehaviour:
   attackPoint: {fileID: 4120130215608610251}
   attackRange: 1
   attackDamage: 10
-  hitPoint: {fileID: 0}
+  hitPoint: {fileID: 8323547478209673767, guid: 9e6fa47eb8dc71241b1b39746cbcf270, type: 3}
   bloodPrefabs:
   - {fileID: 7935733108997359171, guid: e822d59151d3597428b0b63bf25355e7, type: 3}
   - {fileID: 2629016494315086251, guid: 5776aed3bb070e54cb09a11c8a6a5831, type: 3}

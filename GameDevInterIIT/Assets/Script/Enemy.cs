@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private AudioSource blood;
     public AudioClip bloodAudio;
     public AudioClip deathSound;
+    public GameObject player;
     void Start()
     {
         currentHealth = maxHealth;

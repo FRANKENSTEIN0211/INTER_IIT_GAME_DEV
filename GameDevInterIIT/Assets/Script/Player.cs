@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject endMenu;
 
     [SerializeField] GameObject healthBar;
+    [SerializeField]
     private AudioSource sword;
     public AudioClip whoosh;
     private GameObject playerinstance;
@@ -51,11 +52,13 @@ public class Player : MonoBehaviour
                     //Debug.Log("mouse0 pressed");
                     combatAnim.AttackAnim();
                     //Attack();
-                    sword.PlayOneShot(whoosh, 0.7f);
                     nextAttackTime = Time.time + 1f / attackRate;
+                    sword.PlayOneShot(whoosh, 0.7f);
+                    //Debug.Log("attack working");
                 }
             }
         }
+        healthBar.GetComponent<Slider>().value = currentHealth;
     }
 
     public void Attack()
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour
             playerinstance.GetComponent<TimeController>().enabled = false;
             Time.timeScale=0f;
         }
-        healthBar.GetComponent<Slider>().value = currentHealth;
+        
     }
     void PlayerDie()
     {

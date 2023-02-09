@@ -1573,6 +1573,7 @@ MonoBehaviour:
   blood: {fileID: -7118388483087849885}
   bloodAudio: {fileID: 8300000, guid: 4ac1d217e1905634cb1673d8391b41b7, type: 3}
   deathSound: {fileID: 8300000, guid: f672c0f61c686064680e56dfd4b4285f, type: 3}
+  player: {fileID: 8323547478210029063, guid: 9e6fa47eb8dc71241b1b39746cbcf270, type: 3}
 --- !u!54 &6417881907603039747
 Rigidbody:
   m_ObjectHideFlags: 0

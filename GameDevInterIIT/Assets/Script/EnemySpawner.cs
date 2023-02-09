@@ -9,19 +9,18 @@ public class EnemySpawner : MonoBehaviour
     private GameObject[] zombies;
     public int currentZombies;
 
+    public static bool isSpawned=false;
+
     public RoomGenerator roomGenerator;
 
     public float spawnDelay = 1.0f;
 
     private void Start()
     {
-        StartLevel();
-        
     }
 
-    private void StartLevel()
-    {
-        
+    public void StartLevel()
+    {    
         SpawnZombies(numberOfZombies);
     }
 
@@ -32,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnZombies(int number)
     {
+        Debug.Log(number);
         zombies = new GameObject[number];
         for (int i = 0; i < number; i++)
         {
@@ -44,24 +44,31 @@ public class EnemySpawner : MonoBehaviour
 
     private void CheckForZombieDestruction()
     {
-        int destroyedZombies = 0;
-        foreach (GameObject zombie in zombies)
-        {
-            if (zombie == null)
+        if(isSpawned){
+            int destroyedZombies = 0;
+            foreach (GameObject zombie in zombies)
             {
-                destroyedZombies++;
+                if (zombie == null)
+                {
+                    destroyedZombies++;
+                }
             }
-        }
-        if (destroyedZombies == currentZombies)
-        {
-            SpawnNewRoom();
+            if (destroyedZombies == currentZombies)
+            {
+                SpawnNewRoom();
+                isSpawned=false;
+            }
         }
     }
 
     private void SpawnNewRoom()
     {
+        if (roomGenerator == null)
+        {
+            Debug.LogError("roomGenerator is null!");
+            return;
+        }
         roomGenerator = gameObject.GetComponent<RoomGenerator>();
-        SpawnZombies(numberOfZombies);
     }
 }
 

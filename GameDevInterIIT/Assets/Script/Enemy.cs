@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     private string[] DamageAnims = { "Hit_01", "Hit_02" };
     public static int highScore;
     public GameObject scorecard;
+    [SerializeField]
+    private AudioSource blood;
+    public AudioClip bloodAudio;
     void Start()
     {
         currentHealth = maxHealth;
@@ -26,7 +29,7 @@ public class Enemy : MonoBehaviour
             int index = UnityEngine.Random.Range(0, DamageAnims.Length);
             animator.SetTrigger(DamageAnims[index]);
             gameObject.GetComponent<Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
-
+            blood.PlayOneShot(bloodAudio);
         }
 
 

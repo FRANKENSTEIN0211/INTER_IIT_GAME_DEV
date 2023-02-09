@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     public Transform hitPoint;
     public float initialAttackRate = 1.5f;
     public GameObject endMenu;
+
+    [SerializeField]
+    private AudioSource sword;
+    public AudioClip whoosh;
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
         playerController = gameObject.GetComponent<PlayerController>();
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
                     Debug.Log("mouse0 pressed");
                     combatAnim.AttackAnim();
                     //Attack();
+                    sword.PlayOneShot(whoosh, 0.7f);
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }

@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     // public Transform playerCamera;
     // public float turnCalmTime = 0.1f;
     // public float turnCalmVelocity;
+    [SerializeField]
+    private AudioSource foots;
+    private bool footsPlaying = false;
+    [SerializeField]
+    private AudioSource jumpSound;
+    public AudioClip jumpAudio;
 
     public float gravity;
     public float moveSpeed = 10f;
@@ -96,6 +102,7 @@ public class PlayerController : MonoBehaviour
             wasJumping = true;
             vel.y = jumpSpeed / Time.timeScale;
             jump = false;
+            jumpSound.PlayOneShot(jumpAudio);
         }else vel.y = rb.velocity.y;
 
         if(vel.y > 0){
@@ -105,6 +112,16 @@ public class PlayerController : MonoBehaviour
         }
 
         vel.y -= gravity * Time.fixedUnscaledDeltaTime / Time.timeScale;
+        Debug.Log(isGrounded);
+        if(isGrounded && (Mathf.Abs(vel.x) > 0.1f || Mathf.Abs(vel.z) > 0.1f) && !footsPlaying){
+            Debug.Log("PLAY");
+            foots.Play();
+            footsPlaying = true;
+        }
+        else if(!(isGrounded && (Mathf.Abs(vel.x) > 0.1f || Mathf.Abs(vel.z) > 0.1f))){
+            foots.Stop();
+            footsPlaying = false;
+        }
         if (canMove)
         {
             rb.velocity = vel;

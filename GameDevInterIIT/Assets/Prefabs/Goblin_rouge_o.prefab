@@ -903,6 +903,7 @@ MonoBehaviour:
   scorecard: {fileID: 0}
   blood: {fileID: 8847359217598082194}
   bloodAudio: {fileID: 8300000, guid: 4ac1d217e1905634cb1673d8391b41b7, type: 3}
+  deathSound: {fileID: 0}
 --- !u!195 &7239500887567785670
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -969,6 +970,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  soundSource: {fileID: 8847359217598082194}
+  attackAudio:
+  - {fileID: 8300000, guid: 7692d6f893335434eba763fcfc014468, type: 3}
+  - {fileID: 8300000, guid: 9455ae90494d2544f859d778c9a135aa, type: 3}
 --- !u!82 &8847359217598082194
 AudioSource:
   m_ObjectHideFlags: 0

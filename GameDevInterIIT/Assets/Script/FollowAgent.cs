@@ -28,6 +28,10 @@ public class FollowAgent : MonoBehaviour
     public LayerMask playerLayer;
     Enemy enemy;
 
+    [SerializeField]
+    private AudioSource soundSource;
+    public AudioClip[] attackAudio;
+
     private string[] AttackAnims = {"Attack_01", "Attack_02", "Attack_03", "Attack_04"};
     private string[] DeathAnims = {"Dead_01", "Dead_02"};
     void Start()
@@ -93,6 +97,7 @@ public class FollowAgent : MonoBehaviour
         {
             int index = Random.Range(0, AttackAnims.Length);
             anim.SetBool(AttackAnims[index], true);
+            soundSource.PlayOneShot(attackAudio[index]);
         }
     }
     public void GivePlayerDamage()
@@ -101,16 +106,18 @@ public class FollowAgent : MonoBehaviour
 
         foreach (Collider player in hitPlayer)
         {
-            player.GetComponent<Player>().TakeDamage(attackDamage);
-            // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
+            if(player.GetComponent<Player>().currentHealth > 0){
+                player.GetComponent<Player>().TakeDamage(attackDamage);
+                // Debug.Log(enemy.GetComponent<Enemy>().currentHealth);
 
-            Vector3 direction = attackPoint.position;
-            hitPoint = player.transform;
-            float angle = transform.rotation.eulerAngles.y + 180;
-            Debug.Log(angle);
-            GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
-            var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle + 90, 0));
-            Destroy(instance, 5f);
+                Vector3 direction = attackPoint.position;
+                hitPoint = player.transform;
+                float angle = transform.rotation.eulerAngles.y + 180;
+                Debug.Log(angle);
+                GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
+                var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle + 90, 0));
+                Destroy(instance, 5f);
+            }
         }
     }
 

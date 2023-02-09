@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         currentRoomManager.maxEnemyCount = currentLevel;
         currentRoomManager.thisLevel = currentLevel;
         //navSurface.BuildNavMesh();
-        currentRoomManager.StartLevel();
+        //currentRoomManager.StartLevel();
     }
 
     void Update()
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
             currentRoomManager.maxEnemyCount = currentLevel;
             currentRoomManager.thisLevel = currentLevel;
             //navSurface.BuildNavMesh();
-            currentRoomManager.StartLevel();
+            //currentRoomManager.StartLevel();
         }
-
+        
         levelClear = currentRoomManager.levelClear;
     }   
 }

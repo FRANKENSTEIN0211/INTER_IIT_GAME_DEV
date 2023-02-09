@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        highScore=Player.hitCount*50;
+        highScore= Player.hitCount * 50;
         scoreText.text="SCORE: "+highScore.ToString();
     }
 }

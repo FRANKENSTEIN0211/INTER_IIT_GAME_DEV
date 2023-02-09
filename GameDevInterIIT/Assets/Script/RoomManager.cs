@@ -9,12 +9,21 @@ public class RoomManager : MonoBehaviour
     public Transform[] spawnPoints;
     public GameObject[] enemyPrefabs;
     public List<GameObject> aliveEnemies = new List<GameObject>();
-    public bool levelClear = false;
+    public bool levelClear = false, levelOn = false;
     public int maxEnemyCount = 4;
     public int currentEnemyCount = 0;
     public int thisLevel;
+
+    public OrbBehaviour orb;
+
+    void Start(){
+        orb = gameObject.GetComponentInChildren<OrbBehaviour>();
+        levelClear = false;
+        levelOn = false;
+    }
     void Update()
     {   
+        levelOn = orb.levelOn;
         // List<GameObject> aliveCopy = aliveEnemies;
         // foreach(GameObject enemy in aliveCopy){
         //     if(enemy == null){
@@ -23,16 +32,21 @@ public class RoomManager : MonoBehaviour
         // }
         aliveEnemies.RemoveAll(s => s == null);
         currentEnemyCount = aliveEnemies.Count;
-        if(currentEnemyCount <= 0){
+        if(currentEnemyCount <= 0 && levelOn){
             levelClear = true;
+            //Destroy(transform.Find("Gate").gameObject, 1);
         }else{
             levelClear = false;
         }
     }
 
     public void StartLevel(){
-        gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
+        //gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
         SpawnEnemies(maxEnemyCount);
+    }
+
+    public void GenerateNavMesh(){
+        gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     private void SpawnEnemies(int number)

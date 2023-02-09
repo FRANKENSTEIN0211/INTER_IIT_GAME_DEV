@@ -27,7 +27,7 @@ public class TimeController : MonoBehaviour
                 Time.timeScale = Mathf.Lerp(Time.timeScale, slowTimeScale, lerpSpeed * Time.deltaTime);
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 animator.speed = 1/Time.timeScale;  
-                Debug.Log(Time.timeScale);
+                //Debug.Log(Time.timeScale);
                 timePower -= Time.unscaledDeltaTime*10f;
                 player.attackRate = player.initialAttackRate/Time.timeScale;
             }

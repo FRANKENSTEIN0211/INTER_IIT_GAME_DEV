@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Die(){
-        Debug.Log("Ded");
+        //Debug.Log("Ded");
     }
 
 }

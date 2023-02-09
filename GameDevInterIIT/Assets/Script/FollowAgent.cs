@@ -113,7 +113,7 @@ public class FollowAgent : MonoBehaviour
                 Vector3 direction = attackPoint.position;
                 hitPoint = player.transform;
                 float angle = transform.rotation.eulerAngles.y + 180;
-                Debug.Log(angle);
+                //Debug.Log(angle);
                 GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
                 var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle + 90, 0));
                 Destroy(instance, 5f);

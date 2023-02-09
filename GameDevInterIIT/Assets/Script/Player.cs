@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             if(Time.time >= nextAttackTime){
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    Debug.Log("mouse0 pressed");
+                    //Debug.Log("mouse0 pressed");
                     combatAnim.AttackAnim();
                     //Attack();
                     sword.PlayOneShot(whoosh, 0.7f);
@@ -60,11 +60,12 @@ public class Player : MonoBehaviour
     public void Attack()
     {
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
-
         foreach(Collider enemy in hitEnemies)
         {
+                //Debug.Log("hit");
             if(enemy.GetComponent<Enemy>().currentHealth > 0){
                 enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                Debug.Log("hit");
                 Vector3 direction = attackPoint.position;
                 hitPoint = enemy.transform;
                 float angle = transform.rotation.eulerAngles.y + 180;

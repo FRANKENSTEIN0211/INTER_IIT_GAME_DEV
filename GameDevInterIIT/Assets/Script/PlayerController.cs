@@ -112,9 +112,9 @@ public class PlayerController : MonoBehaviour
         }
 
         vel.y -= gravity * Time.fixedUnscaledDeltaTime / Time.timeScale;
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
         if(isGrounded && (Mathf.Abs(vel.x) > 0.1f || Mathf.Abs(vel.z) > 0.1f) && !footsPlaying){
-            Debug.Log("PLAY");
+            //Debug.Log("PLAY");
             foots.Play();
             footsPlaying = true;
         }
@@ -164,12 +164,12 @@ public class PlayerController : MonoBehaviour
     public void PlayerCanMove()
     {
         canMove = true;
-        Debug.Log("canMove is true now");
+        //Debug.Log("canMove is true now");
     }
     public void PlayerCannotMove()
     {
         canMove=false;
-        Debug.Log("canMove is false now");
+        //Debug.Log("canMove is false now");
     }
 
 

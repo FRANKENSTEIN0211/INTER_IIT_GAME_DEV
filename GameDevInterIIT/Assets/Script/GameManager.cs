@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    //public NavMeshSurface navSurface;
     public RoomGenerator roomGenerator;
     private GameObject currentRoom;
     private RoomManager currentRoomManager;
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour
         currentRoomManager.enemyPrefabs = enemyPrefabs;
         currentRoomManager.maxEnemyCount = currentLevel;
         currentRoomManager.thisLevel = currentLevel;
+        //navSurface.BuildNavMesh();
         currentRoomManager.StartLevel();
     }
 
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
             currentRoomManager.enemyPrefabs = enemyPrefabs;
             currentRoomManager.maxEnemyCount = currentLevel;
             currentRoomManager.thisLevel = currentLevel;
+            //navSurface.BuildNavMesh();
             currentRoomManager.StartLevel();
         }
 

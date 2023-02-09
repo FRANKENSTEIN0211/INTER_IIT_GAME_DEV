@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoomManager : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class RoomManager : MonoBehaviour
     public int thisLevel;
     void Update()
     {   
+        // List<GameObject> aliveCopy = aliveEnemies;
+        // foreach(GameObject enemy in aliveCopy){
+        //     if(enemy == null){
+        //         aliveEnemies.Remove(enemy);
+        //     }
+        // }
+        aliveEnemies.RemoveAll(s => s == null);
         currentEnemyCount = aliveEnemies.Count;
         if(currentEnemyCount <= 0){
             levelClear = true;
@@ -23,6 +31,7 @@ public class RoomManager : MonoBehaviour
     }
 
     public void StartLevel(){
+        gameObject.GetComponent<NavMeshSurface>().BuildNavMesh();
         SpawnEnemies(maxEnemyCount);
     }
 

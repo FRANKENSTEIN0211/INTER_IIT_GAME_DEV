@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomGenerator : MonoBehaviour
 {
     public GameObject[] roomPrefabs;
-    public int maxActiveRooms = 3;
+    public int maxActiveRooms = 2;
     public List<GameObject> activeRooms = new List<GameObject>();
     void Start()
     {
@@ -14,9 +14,9 @@ public class RoomGenerator : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown("tab")){
-            GenerateNextRoom();
-        }
+        // if(Input.GetKeyDown("tab")){
+        //     GenerateNextRoom();
+        // }
     }
 
     public GameObject GenerateNextRoom(){
@@ -28,7 +28,8 @@ public class RoomGenerator : MonoBehaviour
         GameObject newRoom = Instantiate(roomPrefabs[roomIndex], prevEndAnchor.position, prevEndAnchor.rotation);
         newRoom.transform.SetParent(GameObject.FindGameObjectWithTag("MainMap").transform);
         activeRooms.Add(newRoom);
-        if(count > maxActiveRooms){
+        if(activeRooms.Count > maxActiveRooms){
+            Debug.Log("Removing room");
             GameObject firstRoom = activeRooms[0];
             activeRooms.Remove(firstRoom);
             Destroy(firstRoom);

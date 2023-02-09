@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+      isSpawned=false;
     }
 
     public void StartLevel()

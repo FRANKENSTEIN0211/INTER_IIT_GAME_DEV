@@ -1468,7 +1468,7 @@ GameObject:
   - component: {fileID: 6417881907603039747}
   - component: {fileID: 3829933013356216952}
   - component: {fileID: -7118388483087849885}
-  - component: {fileID: 7800148138950425207}
+  - component: {fileID: -255695678871551672}
   m_Layer: 8
   m_Name: Goblin_rouge_b
   m_TagString: Enemy
@@ -1677,7 +1677,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1717,7 +1717,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7800148138950425207
+--- !u!114 &-255695678871551672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

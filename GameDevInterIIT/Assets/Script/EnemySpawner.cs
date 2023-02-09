@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public static int numberOfZombies=5;
     public GameObject[] zombiePrefab;
     private GameObject[] zombies;
-    private int currentZombies;
+    public int currentZombies;
 
     public RoomGenerator roomGenerator;
 

@@ -22,10 +22,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioSource sword;
     public AudioClip whoosh;
+    private GameObject playerinstance;
+    public static int hitCount=0;
     void Start(){
         combatAnim = gameObject.GetComponent<CombatAnimationController>();
         playerController = gameObject.GetComponent<PlayerController>();
         currentHealth = maxHealth;
+        playerinstance = GameObject.FindWithTag("Player");
+        hitCount=0;
     }
     void Update()
     {
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
             GameObject bloodPrefab = bloodPrefabs[Random.Range(0, bloodPrefabs.Length)];
             var instance = Instantiate(bloodPrefab, hitPoint.position, Quaternion.Euler(0, angle+90, 0));
             Destroy(instance, 5f);
+            hitCount++;
         }
     }
 
@@ -71,6 +76,8 @@ public class Player : MonoBehaviour
         {
             PlayerDie();
             endMenu.SetActive(true);
+            playerinstance.GetComponent<PlayerController>().enabled = false;
+            playerinstance.GetComponent<TimeController>().enabled = false;
             Time.timeScale=0f;
         }
 

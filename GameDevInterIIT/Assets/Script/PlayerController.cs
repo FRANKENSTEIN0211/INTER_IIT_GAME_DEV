@@ -48,10 +48,7 @@ public class PlayerController : MonoBehaviour
         input.x = Input.GetAxisRaw("Horizontal");
         input.z = Input.GetAxisRaw("Vertical");
         input.Normalize();
-        if (canMove)
-        {
-            moveDir = (Camera.main.transform.forward * input.z + Camera.main.transform.right * input.x);
-        }
+        moveDir = (Camera.main.transform.forward * input.z + Camera.main.transform.right * input.x);
         // float mouseX = Input.GetAxis("Mouse X");
         // float mouseY = Input.GetAxis("Mouse Y");
 

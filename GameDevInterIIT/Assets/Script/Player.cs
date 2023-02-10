@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject endMenu;
 
     [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject timeBar;
     [SerializeField]
     private AudioSource sword;
     public AudioClip whoosh;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         playerinstance = GameObject.FindWithTag("Player");
         hitCount=0;
+
     }
     void Update()
     {
@@ -90,6 +92,8 @@ public class Player : MonoBehaviour
         combatAnim.TakeDamageAnim();
         if (currentHealth <= 0)
         {
+            timeBar.SetActive(false);
+            healthBar.SetActive(false);
             PlayerDie();
             endMenu.SetActive(true);
             playerinstance.GetComponent<PlayerController>().enabled = false;
@@ -111,5 +115,15 @@ public class Player : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag=="Health")
+        {
+            currentHealth = Mathf.Min(currentHealth + 10, maxHealth);
+            healthBar.GetComponent<Slider>().value = currentHealth;
+            Destroy(coll.gameObject);
+        }
     }
 }

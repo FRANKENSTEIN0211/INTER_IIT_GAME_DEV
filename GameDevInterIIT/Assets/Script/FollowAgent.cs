@@ -97,7 +97,8 @@ public class FollowAgent : MonoBehaviour
         {
             int index = Random.Range(0, AttackAnims.Length);
             anim.SetBool(AttackAnims[index], true);
-            soundSource.PlayOneShot(attackAudio[index]);
+            int ind = Random.Range(0, attackAudio.Length);
+            soundSource.PlayOneShot(attackAudio[ind]);
         }
     }
     public void GivePlayerDamage()

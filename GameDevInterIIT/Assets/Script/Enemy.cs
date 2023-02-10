@@ -15,8 +15,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private AudioSource blood;
     public AudioClip bloodAudio;
-    public AudioClip deathSound;
     public GameObject player;
+
+    private bool healthSpawned=false;
+
+    public GameObject healthOrbPrefab;
     void Start()
     {
         currentHealth = maxHealth;
@@ -37,7 +40,15 @@ public class Enemy : MonoBehaviour
 
 
         if(currentHealth <= 0){
-            blood.PlayOneShot(deathSound);
+            if(!healthSpawned)
+            {    Vector3 spawnPosition = transform.position;
+                spawnPosition.y += 2f;
+                GameObject orb = Instantiate(healthOrbPrefab, spawnPosition, Quaternion.identity);
+                Vector3 rot = transform.rotation.eulerAngles;
+                rot.x = -90;
+                orb.transform.rotation = Quaternion.Euler(rot);
+            }
+            healthSpawned=true;
             Die();
         }
 
